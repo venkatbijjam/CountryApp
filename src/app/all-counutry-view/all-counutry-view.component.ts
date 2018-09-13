@@ -16,6 +16,7 @@ export class AllCounutryViewComponent implements OnInit {
     public restcountryservice: CountryService,private _location: Location) {
 
   }
+  public p;
 
   public allcountryDetails =[];
 
