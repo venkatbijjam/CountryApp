@@ -1,0 +1,28 @@
+
+<div class="bg">
+<div class="container m-t-md ">
+
+  <!-- Second row -->
+      <div  class="row">
+        
+   
+    <div class="col-md-4" *ngFor="let reg of regionDetails">
+      <!-- Card -->
+      <a [routerLink]="['/allcountry',reg.region]">
+      <article class="card card-inverse animated fadeInLeft">
+        <img class="img-responsive" src={{reg.imageurl}} alt="region image" />
+        <div class="card-img-overlay">
+          <h4 class="card-title">{{reg.region}}</h4>
+          <h6 class="text-muted">{{reg.population}}</h6>
+          <p class="card-text">{{reg.areabreif}}</p>
+        </div>
+      </article><!-- .end Card -->
+<br>
+</a>
+
+    </div>
+
+
+  </div>
+</div>
+</div>

@@ -1,0 +1,74 @@
+.bg {
+    background-image: url('../region-view/earth.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+   
+}
+
+
+
+.card {
+    overflow: hidden;
+    transition: .25s transform;
+    -webkit-transition: transform 0.25s ease-out;
+    -moz-transition: transform  0.25s ease-out;
+    -o-transition: transform  0.25s ease-out;
+    transition: transform  0.25s ease-out;
+    
+  }
+  .card-inverse .card-img-overlay {
+    background-color:  #333333;
+    border-color:  #333333;
+    opacity: 0.6;
+    
+  }
+
+  
+
+  .card {
+    
+    opacity: 0.9;
+   
+    border-radius: 25px;
+
+  }
+
+.card:hover{
+    /*  */
+        transform: scale(1.08); 
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+    
+}
+
+
+.card-img-top {
+    object-fit: cover;
+    max-height: 100px;
+    }
+
+    .my-pagination /deep/ .ngx-pagination .current {
+        background: blue;
+       color:white;
+       align-self:center;
+
+      }
+
+      .my-pagination  /deep/  .ngx-pagination a, .ngx-pagination button {
+        color: white;
+      }
+
+      .page{
+          display:inline-block;
+      }
+      .clr{
+          color:white;
+      }
+      .newfont{
+          font-weight: bold;
+      }
+      .underline{
+        text-decoration: underline;
+        cursor: -webkit-grab; cursor: grab;
+        color:blue;
+    }     
