@@ -1,5 +1,12 @@
 
 <div class="bg">
+    <div *ngIf = "display" >
+    <app-fingerprint-spinner class="loading"
+    [animationDuration]="1000"
+    [size]="200"
+    [color]="'#7FFF00'"
+  ></app-fingerprint-spinner>
+    </div>
 <div class="container m-t-md ">
 
   <!-- Second row -->

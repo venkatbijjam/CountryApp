@@ -1,0 +1,67 @@
+.img-responsive {
+    width:304px;
+    height:236px;
+}
+
+.aligncenter{
+    margin: auto;
+    width: 50%;
+    font-size:2rem;
+    padding: 10px;
+    color:white;
+}
+
+.colorbackground{
+  background: #8FBC8F;
+    
+}
+.nobackground{
+    background: none;
+}
+
+.paddingzero{
+    padding: 0px;
+    margin: 0px;
+}
+
+.container{
+    opacity: 0.8;
+}
+
+.page{
+    display:inline-block;
+}
+
+.newfont{
+    font-weight: bold;
+}
+.underline{
+  cursor: -webkit-grab; cursor: grab;
+  color:blue;
+}     
+
+.underline:hover{
+    text-decoration: underline;
+
+}
+
+
+
+.titleDesc {
+    font-family: Book Antiqua;
+    color: #4CAF50;
+    padding-left: 1%;
+    border-left: 6px solid #4CAF50;
+    background-color: lightgrey;
+}
+
+@media only screen and (max-width: 600px) {
+    .img-responsive {
+        width:304px;
+        height:125px;
+    }
+
+    .aligncenter{
+        font-size:1rem;
+    }
+}

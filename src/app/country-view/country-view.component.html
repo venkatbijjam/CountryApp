@@ -1,3 +1,139 @@
-<p>
-  country-view works!
-</p>
+<div class="bg">
+
+    <div *ngIf = "display" class="loading">
+        <app-fingerprint-spinner
+        [animationDuration]="1000"
+        [size]="200"
+        [color]="'#7FFF00'"
+      ></app-fingerprint-spinner>
+        </div>
+  <div class="container" *ngIf="countryDetails">
+
+      <br>
+      <br>
+     
+    
+    <div class="row colorbackground">
+      <div class="col-2">
+        &nbsp;
+      </div>
+      <div class="col-4">
+        <img class="img-responsive col-12 titleDesc" src="{{countryDetails.flag}}" alt="Card image cap">
+
+      </div>
+      <div class="col-4 aligncenter nobackground titleDesc">
+        {{countryDetails.name | uppercase}}
+      </div>
+
+      <div class="col-2 ">
+        &nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 paddingzero">
+        <table class="table">
+          <thead>
+            <tr>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-primary">
+              <td>
+                <div>
+                  <label class="newfont">Capital: </label> &nbsp; {{ countryDetails.capital}}
+                </div>
+              </td>
+              <td>
+                <div>
+                  <label class="newfont">Timezone: </label> &nbsp; {{ countryDetails.timezones}}
+                </div>
+              </td>
+
+            </tr>
+            <tr class="table-success">
+              <td>
+                <div>
+                  <label class="newfont page">Currrency: </label>
+
+
+                  <div class="page" *ngIf="countryDetails.currencies.length>0">
+                    <div class="page" *ngFor="let currency of countryDetails.currencies;let first=first;let last=last">
+                      <p [routerLink]="['/country/currency/',currency.code]" class="underline">
+                        &nbsp; {{currency.name}}{{last ? '' : ', '}}
+                      </p>
+                    </div>
+
+                  </div>
+
+                </div>
+              </td>
+              <td>
+                <div>
+                  <label class="newfont page">Languages : &nbsp; </label>
+                  <div class="page" *ngIf="countryDetails.languages.length>0">
+                    <div class="page" *ngFor="let langauage of countryDetails.languages;let first=first;let last=last">
+                      <p [routerLink]="['/country/language/',langauage.iso639_1]" class="underline">
+                        {{langauage.name}}{{last ? ' ' : " &nbsp;"}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </td>
+
+            </tr>
+            <tr class="table-danger">
+              <td>
+                <div>
+                  <label class="newfont page">Calling Codes : &nbsp;</label>
+                  <div class="page" *ngIf="countryDetails.callingCodes.length>0">
+                    <div class="page" *ngFor="let calling of countryDetails.callingCodes;let first=first;let last=last">
+                      {{calling}}{{last ? ' ' : " "}}
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div>
+                  <label class="newfont">Numeric Code: </label> &nbsp; {{ countryDetails.numericCode}}
+                </div>
+              </td>
+            </tr>
+            <tr class="table-info">
+              <td>
+                <div>
+                  <label class="newfont"> Native Name : </label> &nbsp; {{ countryDetails.nativeName}}
+                </div>
+              </td>
+              <td>
+                <div>
+                  <label class="newfont"> Population : </label> &nbsp; {{ countryDetails.population}}
+                </div>
+              </td>
+            </tr>
+            <tr class="table-warning">
+              <td>
+                <div>
+                  <label class="newfont"> Region : </label> &nbsp; {{ countryDetails.region}}
+                </div>
+              </td>
+              <td>
+                <div>
+                  <label class="newfont"> Sub-Region : </label> &nbsp; {{ countryDetails.subregion}}
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 aligncenter">
+        <a class="btn btn-success page" style="width: 100%" (click)="backClicked()">
+          << &nbsp;Go Back</a> </div> <div class="col-6 aligncenter">
+            <a class="btn btn-success page" style="width: 100%" [routerLink]="['/view']">
+              &nbsp;Home</a>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -14,6 +14,11 @@ import { AllCounutryViewComponent } from './all-counutry-view/all-counutry-view.
 
 import {NgxPaginationModule} from 'ngx-pagination'; 
 import { CountryViewComponent } from './country-view/country-view.component';
+
+import { ToastrModule } from 'ngx-toastr';
+import { FingerprintSpinnerModule} from 'angular-epic-spinners';
+  
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,12 +30,17 @@ import { CountryViewComponent } from './country-view/country-view.component';
     BrowserModule,
     HttpClientModule,
     NgxPaginationModule,
+    BrowserAnimationsModule,FingerprintSpinnerModule,
+    ToastrModule.forRoot(),
     RouterModule.forRoot(
       [
         { path: 'view', component: RegionViewComponent },
       { path:'', redirectTo:'view',pathMatch:'full'},
       {path:'allcountry/:region',component:AllCounutryViewComponent},
-      {path:'country/:countryname',component:CountryViewComponent}
+      {path:'country/:countryname',component:CountryViewComponent},
+      {path:'country/currency/:currencycode',component:AllCounutryViewComponent},
+      {path:'country/language/:languagecode',component:AllCounutryViewComponent}
+      
       
       ]
     )

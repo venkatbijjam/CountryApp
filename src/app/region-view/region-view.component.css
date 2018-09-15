@@ -33,9 +33,9 @@
     
 }
 
-.bg {
-    background-image: url('./earth.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+.loading{ 
+  position: absolute;
+  left:40%;
+  top:30%;
+
 }

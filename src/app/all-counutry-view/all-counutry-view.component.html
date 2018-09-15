@@ -1,11 +1,36 @@
 <div class="bg">
-  <div class="container m-t-md ">
+    <div *ngIf = "display" class="loading">
+        <app-fingerprint-spinner
+        [animationDuration]="1000"
+        [size]="200"
+        [color]="'#7FFF00'"
+      ></app-fingerprint-spinner>
+        </div>
 
-    <div class="row">
+  <div class="container-fluid" *ngIf="displayContent">
 
 
-      <div class="col-md-4" *ngFor="let country of allcountryDetails[0] | paginate: { itemsPerPage: 9} ">
+   
 
+      <h1 class="newfont clr aligncenter titleDesc" *ngIf="!filter">
+        All Country Details 
+      </h1>
+
+        <h1>
+      <div class="newfont clr aligncenter titleDesc" *ngIf="filter">
+          {{filter}}
+
+      </div>
+      </h1>
+
+    <br>
+    <br>
+
+
+    <div class="row alignment">
+
+
+      <div class="col-md-3" *ngFor="let country of allcountryDetails[0] | paginate: { itemsPerPage: 4, currentPage: p } ">
 
 
 
@@ -27,7 +52,7 @@
 
 
         <div class="card" style="width: 18rem;">
-          <h4 class="card-title btn btn-primary">{{country.name | uppercase }}</h4>
+          <h4 class="card-title btn btn-success">{{country.name | uppercase }}</h4>
 
           <img class="card-img-top col-12" src="{{country.flag}}" alt="Card image cap">
           <div class="card-body">
@@ -37,42 +62,40 @@
                 <label class="newfont">Capital: </label>{{ country.capital}}
               </div>
               <div>
-                  <label class="newfont">Timezone: </label>{{ country.timezones}}
-                </div>  
-                <div>
-                    <label class="newfont page">Currrency: </label>   
-                    
-                 
-                    <div class="page" *ngIf="country.currencies.length>0"> 
-                      <div class="page" *ngFor="let currency of country.currencies;let first=first;let last=last">  
-                        <p (click) = "getAllCountryByCurrency(currency.code)" class="underline">
-                         {{currency.name}}{{last ? '' : ',  '}}
-                        </p>
-                      </div>
-     
-                    </div>
-                    
-                  </div> 
-                  <div>
-                      <label class="newfont page">Languages: </label>
-                        
+                <label class="newfont">Timezone: </label>{{ country.timezones}}
+              </div>
+              <div>
+                <label class="newfont page">Currrency: </label>
 
-                          <div class="page" *ngIf="country.languages.length>0"> 
-                              <div class="page" *ngFor="let langauage of country.languages;let first=first;let last=last">  
-                                <p (click) = "getAllCountryByLanguage(langauage.iso639_1)" class="underline">
-                                 {{langauage.name}}{{last ? ' '  : ", "}}
-                                </p>
-                              </div>
-             
-                            </div>
-                      
-                        
-                        
-                    </div> 
-                    
+
+                <div class="page" *ngIf="country.currencies.length>0">
+                  <div class="page" *ngFor="let currency of country.currencies;let first=first;let last=last">
+                    <p [routerLink]="['/country/currency/',currency.code]" class="underline">
+                      {{currency.name}}{{last ? '' : ', '}}
+                    </p>
+                  </div>
+
+                </div>
+
+              </div>
+              <div>
+                <label class="newfont page">Languages: </label>
+                <div class="page" *ngIf="country.languages.length>0">
+                  <div class="page" *ngFor="let langauage of country.languages;let first=first;let last=last">
+                    <p [routerLink]="['/country/language/',langauage.iso639_1]" class="underline">
+                      {{langauage.name}}{{last ? ' ' : ", "}}
+                    </p>
+                  </div>
+
+                </div>
+
+
+
+              </div>
+
             </div>
           </div>
-        <a class="btn btn-primary" style="width: 100%" [routerLink]="['/country',country.nativeName]">See Details</a>
+          <a class="btn btn-primary" style="width: 100%" [routerLink]="['/country',country.name]">See Details</a>
 
         </div>
         <br>
@@ -80,10 +103,18 @@
       </div>
 
     </div>
-    <div>
-      <a class="btn btn-primary page" style="width: 10%" (click)="backClicked()">
-        << &nbsp;Go Back</a> <pagination-controls class="my-pagination page" (pageChange)="$event">
-          </pagination-controls>
+    <br>
+    <br>
+    <div class="row">
+    
+      <div class="col-md-12 aligncenter">
+        <a class="btn btn-success page "  (click)="backClicked()">
+          << &nbsp;Go Back</a> <pagination-controls class="my-pagination page" (pageChange)="p = $event">
+            </pagination-controls>  &nbsp; &nbsp;&nbsp; &nbsp;
+            <a class="btn btn-success page" [routerLink]="['/view']">
+                &nbsp;Home</a> 
+      </div>
+      
 
     </div>
 

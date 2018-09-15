@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CountryService } from '../country.service';
 import { Location } from '@angular/common';
+import { ToastrService, ToastRef } from 'ngx-toastr';
 
 
 @Component({
@@ -13,16 +14,22 @@ export class CountryViewComponent implements OnInit {
 
 
   constructor(private _activatedrouter: ActivatedRoute, private _router: Router,
-    public restcountryservice: CountryService,private _location: Location) {
+    public restcountryservice: CountryService,private _location: Location,public toaster:ToastrService) {
 
   }
 
-  public countryDetails=[];
+  public display=false;
+  public countryDetails;
   ngOnInit() {
-    let countryname: string = this._activatedrouter.snapshot.paramMap.get('country');
+    this.display = true;
+    let countryname: string = this._activatedrouter.snapshot.paramMap.get('countryname');
     //console.log(regionname);
-    
-  this.getAllCountryByLanguage('es');
+    this.getSingleCountryDetails(countryname);
+
+    window.scrollTo(0, 0)
+
+
+
   }
 
 
@@ -39,11 +46,17 @@ public getSingleCountryDetails = (countryname: string) =>{
 
   this.restcountryservice.getCountryDetails(countryname).subscribe(
     data =>{
-      this.countryDetails.push(data);
-      console.log(this.countryDetails);
+      this.countryDetails =data[0];
+      
+      //console.log(this.countryDetails);
+    this.toaster.success('Country details are loaded');
+    this.display=false;
+
+
     },
     error  =>{
-    console.log("Some error occured while retreving counrty details")
+    this.toaster.error('Some error occured while retreving country details');
+
     }
 
   )
@@ -56,18 +69,7 @@ Method to get all countrys by Language
 */
 public getAllCountryByLanguage = (language:string):any => { 
   //this.allcountryDetails =[];
-  console.log(language)
-  this.restcountryservice.getCountiesByLanguage(language).subscribe(
-    data =>
-    {
-     // this.allcountryDetails.push(data);
-      this._router.navigate(['/allcountry',language]);
-    },
-    error =>{
-      console.log("error at reteveing country by language")
-    }
-
-  )
+  this._router.navigate(['/country/language/',language]);
 }
 
 
@@ -76,17 +78,8 @@ Method to get all countrys by Currency
 */
 public getAllCountryByCurrency = (currency:string):any => { 
   //this.allcountryDetails =[];
-  this.restcountryservice.getCountiesByCurrency(currency).subscribe(
-    data =>
-    {
-     // this.allcountryDetails.push(data);
-      console.log(data)
-    },
-    error =>{
-      console.log("error at reteveing country by currency")
-    }
-
-  )
+  this._router.navigate(['/country/currency/',currency]);
+ 
 }
 
 }

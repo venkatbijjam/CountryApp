@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CountryService } from '../country.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-region-view',
@@ -11,21 +12,19 @@ export class RegionViewComponent implements OnInit {
 
 
   constructor(private _activatedrouter: ActivatedRoute, private _router: Router,
-    public restcountryservice: CountryService) {
+    public restcountryservice: CountryService, public toaster: ToastrService) {
 
   }
-
+public display=false;
   public allregions = [];
   public regionunique = [];
   public regionDetails: any = []
 
   ngOnInit() {
 
-
+this.display=true;
     this.getRegionDetails();
-
-
-
+    window.scrollTo(0, 0)
 
   }
 
@@ -41,9 +40,12 @@ export class RegionViewComponent implements OnInit {
         this.regionunique = this.removeDuplicates(data, 'region')
         // console.log(this.regionunique)
         this.regionConsolidate();
+        this.toaster.success('All Regions are loaded');
+this.display=false;
       },
       error => {
-        console.log("region retreving error")
+        this.toaster.error('Region Retreving Error!');
+
 
       }
     );
@@ -84,14 +86,14 @@ export class RegionViewComponent implements OnInit {
         case "Africa": {
           //statements; 
           this.generateRegionClass('assets/Images/africaimage.jpg', `
-          
-Africa is the world's second largest and second most-populous continent 
-(behind Asia in both categories). At about 30.3 million km2 
-(11.7 million square miles) including adjacent islands, it 
-covers 6% of Earth's total surface area and 20% of its land area.
-With 1.2 billion people[1] as of 2016, 
-it accounts for about 16% of the world's human population.
-          `, element.region, 16)
+                  
+        Africa is the world's second largest and second most-populous continent 
+        (behind Asia in both categories). At about 30.3 million km2 
+        (11.7 million square miles) including adjacent islands, it 
+        covers 6% of Earth's total surface area and 20% of its land area.
+        With 1.2 billion people[1] as of 2016, 
+        it accounts for about 16% of the world's human population.
+                  `, element.region, 16)
           break;
         }
         case "Oceania": {

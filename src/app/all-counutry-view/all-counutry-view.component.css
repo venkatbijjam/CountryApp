@@ -1,11 +1,3 @@
-.bg {
-    background-image: url('../region-view/earth.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-   
-}
-
 
 
 .card {
@@ -60,6 +52,7 @@
 
       .page{
           display:inline-block;
+          
       }
       .clr{
           color:white;
@@ -67,8 +60,35 @@
       .newfont{
           font-weight: bold;
       }
-      .underline{
-        text-decoration: underline;
+  
+
+    .underline{
         cursor: -webkit-grab; cursor: grab;
         color:blue;
-    }     
+      }     
+      
+      .underline:hover{
+          text-decoration: underline;
+      
+      }
+
+    .aligncenter{
+        text-align:center;
+    }
+
+
+    .titleDesc {
+        font-family: Book Antiqua;
+        color:green;
+        padding-left: 1%;
+        border-left: 6px solid #4CAF50;
+        background-color: lightgrey;
+    }
+
+
+    @media only screen and (max-width: 600px) {
+        .alignment{
+            margin: auto;
+            width: 80%;
+        }
+    }
