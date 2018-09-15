@@ -39,7 +39,8 @@ import { FingerprintSpinnerModule} from 'angular-epic-spinners';
       {path:'allcountry/:region',component:AllCounutryViewComponent},
       {path:'country/:countryname',component:CountryViewComponent},
       {path:'country/currency/:currencycode',component:AllCounutryViewComponent},
-      {path:'country/language/:languagecode',component:AllCounutryViewComponent}
+      {path:'country/language/:languagecode',component:AllCounutryViewComponent},
+      {path:'**',component:RegionViewComponent}
       
       
       ]
